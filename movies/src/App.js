@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import Movie from './components/Movie.js'
 import './App.css';
 
 class App extends Component {
-<<<<<<< HEAD
 
 state = {
    movies: []
@@ -16,12 +16,16 @@ state = {
 
   render() {
 
-    console.log('render', this.state)
+    console.log(this.state)
 
-    return (
+    const movies = this.state.movies.map(movie => <Movie key={movie.id} title={movie.title} year={movie.year}/>)
+
+    return ( 
 
       <div className="App">
         
+        {movies}
+
       </div>
     );
   }
