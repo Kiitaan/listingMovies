@@ -22,7 +22,7 @@ state = {
 
   addMovie = (movieName) => {
     const newMovie = this.state.movies.find(movie => movie.title === movieName)
-    this.setState({ favorites: [newMovie, ...this.state.favorites]}, { movies: newMovie})
+    this.setState({ favorites: [newMovie, ...this.state.favorites]})
   }
 
   removeMovie = (movieName) => {
@@ -30,14 +30,13 @@ state = {
     this.setState({ favorites: notFav })
   }
 
-  randomMovie = () => { 
+  randomMovie = (movieName) => { 
     const favRandom = this.state.favorites[Math.floor(Math.random()*this.state.favorites.length)]
     this.setState({ random: [favRandom, ...this.state.random]})
   }
 
-  render() {
 
-    console.log('Le random movie est',this.state.random)
+  render() {
 
     const showMovie = this.state.movies.map(movie => <Movie key={movie.id} title={movie.title} year={movie.year} image={movie.posterUrl} addM={this.addMovie}/>)
 
@@ -45,13 +44,14 @@ state = {
 
     const showRandom = this.state.random.map(random => <Random name={random.title} key={random.id} year={random.year} image={random.posterUrl} random={this.randomMovie}/>)
 
-    const showButtonRandom = this.state.random === [] ? '' : <button onClick= {() => this.randomMovie()}>RANDOM</button> 
+    const showButtonRandom = <button onClick= {() => this.randomMovie()}>RANDOM</button> 
 
-    return ( 
 
-        <div className="App">
+    if (this.state.favorites.length === 0) {
+      
+      return (
 
-        <div>{ showButtonRandom }</div>
+      <div className="App">
         
         <span>THE RANDOM MOVIE</span>
         <div>{ showRandom }</div>
@@ -63,7 +63,29 @@ state = {
         <div>{ showMovie }</div>
 
       </div>
-    );
+
+        )
+
+    } else {
+
+    return ( 
+
+        <div className="App">
+
+          <div>{ showButtonRandom }</div>
+        
+          <span>THE RANDOM MOVIE</span>
+          <div>{ showRandom }</div>
+
+           <span>LIST OF FAVORITES</span>
+          <div>{ showFavorite }</div>
+        
+          <span>LIST OF MOVIES</span>
+          <div>{ showMovie }</div>
+
+        </div>
+    )
+   }
   }
 }
 
