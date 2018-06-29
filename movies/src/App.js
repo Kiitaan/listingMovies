@@ -22,7 +22,7 @@ state = {
 
   addMovie = (movieName) => {
     const newMovie = this.state.movies.find(movie => movie.title === movieName)
-    this.setState({ favorites: [newMovie, ...this.state.favorites]})
+    this.setState({ favorites: [newMovie, ...this.state.favorites]}, { movies: newMovie})
   }
 
   removeMovie = (movieName) => {
@@ -45,15 +45,16 @@ state = {
 
     const showRandom = this.state.random.map(random => <Random name={random.title} key={random.id} year={random.year} image={random.posterUrl} random={this.randomMovie}/>)
 
+    const showButtonRandom = this.state.random === [] ? '' : <button onClick= {() => this.randomMovie()}>RANDOM</button> 
+
     return ( 
 
-      <div className="App">
+        <div className="App">
 
-        <button onClick= {() => this.randomMovie()}>RANDOM</button>
-
+        <div>{ showButtonRandom }</div>
+        
         <span>THE RANDOM MOVIE</span>
         <div>{ showRandom }</div>
-
 
         <span>LIST OF FAVORITES</span>
         <div>{ showFavorite }</div>
