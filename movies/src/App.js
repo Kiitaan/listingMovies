@@ -59,13 +59,13 @@ state = {
 
       <div className="App">
         
-        <span>THE RANDOM MOVIE</span>
+        <span className="Category">THE RANDOM MOVIE</span>
         <div>{ showRandom }</div>
 
-        <span>LIST OF FAVORITES</span>
+        <span className="Category">LIST OF FAVORITES</span>
         <div>{ showFavorite }</div>
         
-        <span>LIST OF MOVIES</span>
+        <span className="Category">LIST OF MOVIES</span>
         <div>{ showMovie }</div>
 
       </div>

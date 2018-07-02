@@ -1,12 +1,17 @@
 .App {
   text-align: center;
-  background-color: hotpink;
+  background-color: #724B9F;
 }
 
 .title {
   text-align: center;
   padding-top: 1vh;
   padding-bottom: 1vh;
+  font-family: Comic sans MS, Courier, serif;
+}
+
+.Category {
+  font-family: 'MS Sans Serif', Geneva, sans-serif;
 }
 
 button {
@@ -39,4 +44,5 @@ img {
  text-shadow: white 0px 0px 2px;
  font-size: 16px;
  background-size: 150px;
+  border: 4mm ridge rgb(170, 50, 20, .9);
 }
