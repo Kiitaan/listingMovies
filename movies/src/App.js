@@ -22,14 +22,13 @@ state = {
 
   addMovie = (movieId) => {
     const newMovie = this.state.movies.find(movie => movie.id === movieId)
-
-    const MovieUnique = this.state.favorites.find(movie => movie.id === movieId)
+    const isAlreadyFavorite = this.state.favorites.some(movie => movie.id === movieId)
       
-      if (MovieUnique === undefined) {
-         this.setState({ favorites: [newMovie, ...this.state.favorites]})
-      } else {
-        ''
-      }
+    if (isAlreadyFavorite) {
+      return
+    }
+
+    this.setState({ favorites: [newMovie, ...this.state.favorites]})
   }
 
   removeFavMovie = (movieName) => {
