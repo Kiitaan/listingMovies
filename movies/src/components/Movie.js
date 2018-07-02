@@ -9,7 +9,7 @@ const Movie = props =>
 			<img src={props.image} alt="film"/>
 			<h3 className="title">{props.title}</h3>
 			<h4>{props.year}</h4>
-			<button onClick= {() => props.addM(props.title)}>ADD</button>
+			<button onClick= {() => props.addM(props.id)}>ADD</button>
 
 		</div>
 		)

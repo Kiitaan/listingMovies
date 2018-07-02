@@ -20,13 +20,20 @@ state = {
       .then(datas => this.setState({ movies: datas.movies }))
   }
 
-  addMovie = (movieName) => {
-    const newMovie = this.state.movies.find(movie => movie.title === movieName)
-    this.setState({ favorites: [newMovie, ...this.state.favorites]})
+  addMovie = (movieId) => {
+    const newMovie = this.state.movies.find(movie => movie.id === movieId)
+
+    const MovieUnique = this.state.favorites.find(movie => movie.id === movieId)
+      
+      if (MovieUnique === undefined) {
+         this.setState({ favorites: [newMovie, ...this.state.favorites]})
+      } else {
+        ''
+      }
   }
 
-  removeMovie = (movieName) => {
-    const notFav = this.state.favorites.filter(favorites => favorites.title !== movieName)
+  removeFavMovie = (movieName) => {
+    const notFav = this.state.favorites.filter(favorite => favorite.title !== movieName)
     this.setState({ favorites: notFav })
   }
 
@@ -38,14 +45,13 @@ state = {
 
   render() {
 
-    const showMovie = this.state.movies.map(movie => <Movie key={movie.id} title={movie.title} year={movie.year} image={movie.posterUrl} addM={this.addMovie}/>)
+    const showMovie = this.state.movies.map(movie => <Movie key={movie.id} title={movie.title} year={movie.year} image={movie.posterUrl} addM={this.addMovie} id={movie.id}/>)
 
-    const showFavorite = this.state.favorites.map(favorite => <Favorite name={favorite.title} key={favorite.id} year={favorite.year} image={favorite.posterUrl} remove={this.removeMovie}/>)
+    const showFavorite = this.state.favorites.map(favorite => <Favorite name={favorite.title} key={favorite.id} year={favorite.year} image={favorite.posterUrl} remove={this.removeFavMovie}/>)
 
     const showRandom = this.state.random.map(random => <Random name={random.title} key={random.id} year={random.year} image={random.posterUrl} random={this.randomMovie}/>)
 
     const showButtonRandom = <button onClick= {() => this.randomMovie()}>RANDOM</button> 
-
 
     if (this.state.favorites.length === 0) {
       
